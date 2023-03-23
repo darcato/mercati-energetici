@@ -17,8 +17,8 @@ from .exceptions import (
 
 
 @dataclass
-class MercatiEnergetici:
-    """Main class for handling connections with the GME API."""
+class MercatoEnergetico:
+    """Base class for handling connections with the GME API."""
 
     session: ClientSession | None = None
 
@@ -86,60 +86,16 @@ class MercatiEnergetici:
 
         return await response.json()
 
-    async def get_all_prices(self, day: date = None, market: str = "MGP") -> dict:
-        """Get prices for a specific day and market, on all the market zones.
-
-        Args:
-            day: get prices of this date
-            maket: get prices from this market
-
-        Returns:
-            A Python dictionary like: {zone: { hour : price_per_MWh }}
-        """
-
-        if day is None:
-            day = date.today()
-        data = await self._request(
-            "/GetPrezziME/{year:4d}{month:02d}{day:02d}/{market}".format(
-                day=day.day, month=day.month, year=day.year, market=market
-            )
-        )
-        prices = {record["zona"]: {} for record in data if "zona" in record}
-        for record in data:
-            prices[record["zona"]][record["ora"] - 1] = record["prezzo"]
-        return prices
-
-    async def get_prices(
-        self, day: date = None, market: str = "MGP", zone: str = "PUN"
-    ) -> dict:
-        """Get prices for a specific day, market and zone.
-
-        Args:
-            day: get prices of this date
-            maket: get prices from this market
-            zone: one of ["NORD", "SUD", ...]
-
-        Returns:
-            A Python dictionary like: { hour : price_per_MWh }
-        """
-
-        prices = await self.get_all_prices(day, market)
-        if zone not in prices.keys():
-            raise KeyError(
-                f"Zone '{zone}' not found. Available zones are: {list(prices.keys())}"
-            )
-        return prices[zone]
-
     async def close(self) -> None:
         """Close open client session."""
         if self.session and self.close_session:
             await self.session.close()
 
-    async def __aenter__(self) -> MercatiEnergetici:
+    async def __aenter__(self) -> MercatoEnergetico:
         """Async enter.
 
         Returns:
-            The MercatiEnergetici object.
+            The MercatoEnergetico object.
         """
         return self
 
@@ -150,3 +106,50 @@ class MercatiEnergetici:
             _exc_info: Exec type.
         """
         await self.close()
+
+
+@dataclass
+class MercatoElettrico(MercatoEnergetico):
+    """Main class for handling connections with the GME API."""
+
+    market: str = "MGP"
+
+    async def get_all_prices(self, day: date = None) -> dict:
+        """Get prices for a specific day on all the market zones.
+
+        Args:
+            day: get prices of this date
+
+        Returns:
+            A Python dictionary like: {zone: { hour : price_per_MWh }}
+        """
+
+        if day is None:
+            day = date.today()
+        data = await self._request(
+            "/GetPrezziME/{year:4d}{month:02d}{day:02d}/{market}".format(
+                day=day.day, month=day.month, year=day.year, market=self.market
+            )
+        )
+        prices = {record["zona"]: {} for record in data if "zona" in record}
+        for record in data:
+            prices[record["zona"]][record["ora"] - 1] = record["prezzo"]
+        return prices
+
+    async def get_prices(self, day: date = None, zone: str = "PUN") -> dict:
+        """Get prices for a specific day and zone.
+
+        Args:
+            day: get prices of this date
+            zone: one of ["NORD", "SUD", ...]
+
+        Returns:
+            A Python dictionary like: { hour : price_per_MWh }
+        """
+
+        prices = await self.get_all_prices(day)
+        if zone not in prices.keys():
+            raise KeyError(
+                f"Zone '{zone}' not found. Available zones are: {list(prices.keys())}"
+            )
+        return prices[zone]
