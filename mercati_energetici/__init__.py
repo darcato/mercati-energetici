@@ -86,6 +86,44 @@ class MercatoEnergetico:
 
         return await response.json()
 
+    async def general_conditions(self, language="EN") -> dict:
+        """Get general usage conditions.
+
+        Args:
+            language: 'EN' or 'IT'
+
+        Returns:
+            A Python dictionary like: {id: ...,
+                                       lingua: ...,
+                                       testo: ...,
+                                       ultimoAggiornamento: ...,
+                                       tipo: 'CG'}
+        """
+
+        data = await self._request(
+            "/GetCondizioniGenerali/{lang}".format(lang=language.strip().upper())
+        )
+        return data
+
+    async def disclaimer(self, language="EN") -> dict:
+        """Get disclaimer.
+
+        Args:
+            language: 'EN' or 'IT'
+
+        Returns:
+            A Python dictionary like: {id: ...,
+                                       lingua: ...,
+                                       testo: ...,
+                                       ultimoAggiornamento: ...,
+                                       tipo: 'CG'}
+        """
+
+        data = await self._request(
+            "/GetDisclaimer/{lang}".format(lang=language.strip().upper())
+        )
+        return data
+
     async def close(self) -> None:
         """Close open client session."""
         if self.session and self.close_session:
