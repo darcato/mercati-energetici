@@ -191,3 +191,45 @@ class MercatoElettrico(MercatoEnergetico):
                 f"Zone '{zone}' not found. Available zones are: {list(prices.keys())}"
             )
         return prices[zone]
+
+    async def get_all_quantities(self, day: date = None) -> dict:
+        """Get bought and sold volume for a specific day on all the market zones.
+
+        Args:
+            day: get volumes of this date
+
+        Returns:
+            A Python dictionary like: {zone: { hour : MWh }}
+        """
+
+        if day is None:
+            day = date.today()
+        data = await self._request(
+            "/GetQuantitaME/{year:4d}{month:02d}{day:02d}/{market}".format(
+                day=day.day, month=day.month, year=day.year, market=self.market
+            )
+        )
+        bought = {record["zona"]: {} for record in data if "zona" in record}
+        sold = bought.copy()
+        for record in data:
+            bought[record["zona"]][record["ora"] - 1] = record["acquisti"]
+            sold[record["zona"]][record["ora"] - 1] = record["vendite"]
+        return bought, sold
+
+    async def get_quantities(self, day: date = None, zone: str = "Totale") -> dict:
+        """Get bought and sold volume for a specific day and zone.
+
+        Args:
+            day: get volumes of this date
+            zone: one of ["NORD", "SUD", ...]
+
+        Returns:
+            A Python dictionary like: { hour : MWh }
+        """
+
+        bought, sold = await self.get_all_quantities(day)
+        if zone not in bought.keys():
+            raise KeyError(
+                f"Zone '{zone}' not found. Available zones are: {list(bought.keys())}"
+            )
+        return bought[zone], sold[zone]
