@@ -17,7 +17,7 @@ from .exceptions import (
 
 
 @dataclass
-class MercatoEnergetico:
+class MercatiEnergetici:
     """Base class for handling connections with the GME API."""
 
     session: ClientSession | None = None
@@ -124,12 +124,49 @@ class MercatoEnergetico:
         )
         return data
 
+    async def electricity_markets(self) -> dict:
+        """Get electricity markets.
+
+        Returns:
+            A list of Python dictionaries like: [{data: ...,
+                                                  mercato: ...,
+                                                  volumi: ...}]
+        """
+
+        data = await self._request("/GetMercatiElettrici")
+        return data
+
+    async def gas_markets(self) -> dict:
+        """Get gas markets.
+
+        Returns:
+            A list of Python dictionaries like: [{data: ...,
+                                                  mercato: ...,
+                                                  volumi: ...,
+                                                  tipo: ...}]
+        """
+
+        data = await self._request("/GetMercatiGas")
+        return data
+    
+    async def enviromental_markets(self) -> dict:
+        """Get enviromental markets.
+
+        Returns:
+            A list of Python dictionaries like: [{data: ...,
+                                                  mercato: ...,
+                                                  volumi: ...]
+        """
+
+        data = await self._request("/GetMercatiAmbientali")
+        return data
+
     async def close(self) -> None:
-        """Close open client session."""
+        """Close client session."""
         if self.session and self.close_session:
             await self.session.close()
 
-    async def __aenter__(self) -> MercatoEnergetico:
+    async def __aenter__(self) -> MercatiEnergetici:
         """Async enter.
 
         Returns:
@@ -147,13 +184,13 @@ class MercatoEnergetico:
 
 
 @dataclass
-class MercatoElettrico(MercatoEnergetico):
-    """Main class for handling connections with the GME API."""
+class MercatoElettrico(MercatiEnergetici):
+    """Electricity Market."""
 
     market: str = "MGP"
 
-    async def get_all_prices(self, day: date = None) -> dict:
-        """Get prices for a specific day on all the market zones.
+    async def all_prices(self, day: date = None) -> dict:
+        """Get electricity prices for a specific day on all the market zones.
 
         Args:
             day: get prices of this date
@@ -174,8 +211,8 @@ class MercatoElettrico(MercatoEnergetico):
             prices[record["zona"]][record["ora"] - 1] = record["prezzo"]
         return prices
 
-    async def get_prices(self, day: date = None, zone: str = "PUN") -> dict:
-        """Get prices for a specific day and zone.
+    async def prices(self, day: date = None, zone: str = "PUN") -> dict:
+        """Get electricity prices for a specific day and zone.
 
         Args:
             day: get prices of this date
@@ -185,14 +222,14 @@ class MercatoElettrico(MercatoEnergetico):
             A Python dictionary like: { hour : price_per_MWh }
         """
 
-        prices = await self.get_all_prices(day)
+        prices = await self.all_prices(day)
         if zone not in prices.keys():
             raise KeyError(
                 f"Zone '{zone}' not found. Available zones are: {list(prices.keys())}"
             )
         return prices[zone]
 
-    async def get_all_quantities(self, day: date = None) -> dict:
+    async def all_volumes(self, day: date = None) -> tuple[dict, dict]:
         """Get bought and sold volume for a specific day on all the market zones.
 
         Args:
@@ -216,7 +253,9 @@ class MercatoElettrico(MercatoEnergetico):
             sold[record["zona"]][record["ora"] - 1] = record["vendite"]
         return bought, sold
 
-    async def get_quantities(self, day: date = None, zone: str = "Totale") -> dict:
+    async def volumes(
+        self, day: date = None, zone: str = "Totale"
+    ) -> tuple[dict, dict]:
         """Get bought and sold volume for a specific day and zone.
 
         Args:
@@ -227,9 +266,29 @@ class MercatoElettrico(MercatoEnergetico):
             A Python dictionary like: { hour : MWh }
         """
 
-        bought, sold = await self.get_all_quantities(day)
+        bought, sold = await self.all_quantities(day)
         if zone not in bought.keys():
             raise KeyError(
                 f"Zone '{zone}' not found. Available zones are: {list(bought.keys())}"
             )
         return bought[zone], sold[zone]
+
+    async def liquidity(self, day: date = None) -> dict:
+        """Get liquidity of electricity markets.
+
+        Args:
+            day: get liquidity of this date
+
+        Returns:
+            A Python dictionary like: {ora: liquidity}.
+        """
+
+        if day is None:
+            day = date.today()
+        data = await self._request(
+            "/GetLiquidita/{year:4d}{month:02d}{day:02d}".format(
+                day=day.day, month=day.month, year=day.year
+            )
+        )
+        liquidity = {x["ora"]: x["liquidita"] for x in data}
+        return liquidity
