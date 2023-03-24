@@ -9,6 +9,19 @@ class MercatoGas(MercatiEnergetici):
 
     market: str = "MGP"
 
+    async def gas_markets(self) -> dict:
+        """Get gas markets.
+
+        Returns:
+            A list of Python dictionaries like: [{data: ...,
+                                                  mercato: ...,
+                                                  volumi: ...,
+                                                  tipo: ...}]
+        """
+
+        data = await self._request("/GetMercatiGas")
+        return data
+
     async def results(self, day: date) -> dict:
         """Get gas market results.
 

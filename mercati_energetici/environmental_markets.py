@@ -9,6 +9,18 @@ class MercatoAmbientale(MercatiEnergetici):
 
     market: str = "GO"
 
+    async def environmental_markets(self) -> dict:
+        """Get environmental markets.
+
+        Returns:
+            A list of Python dictionaries like: [{data: ...,
+                                                  mercato: ...,
+                                                  volumi: ...]
+        """
+
+        data = await self._request("/GetMercatiAmbientali")
+        return data
+    
     async def results(self, day: date) -> dict:
         """Get environmental market results.
 
