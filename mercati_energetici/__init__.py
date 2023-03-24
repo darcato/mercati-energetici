@@ -1,7 +1,6 @@
 """Asynchronous Python client for the GME API."""
 from __future__ import annotations
 
-from collections.abc import Mapping
 from dataclasses import dataclass
 from datetime import date
 from typing import Any
@@ -25,8 +24,6 @@ class MercatiEnergetici:
     async def _request(
         self,
         uri: str,
-        *,
-        params: Mapping[str, str] | None = None,
     ) -> dict[str, Any]:
         """Handle a request to the GME API.
 
@@ -60,7 +57,6 @@ class MercatiEnergetici:
         response = await self.session.request(
             "GET",
             url,
-            params=params,
             headers={
                 "Host": gme_app_host,
                 "x-requested-with": "darcato/mercati-energetici",
@@ -149,8 +145,8 @@ class MercatiEnergetici:
         data = await self._request("/GetMercatiGas")
         return data
     
-    async def enviromental_markets(self) -> dict:
-        """Get enviromental markets.
+    async def environmental_markets(self) -> dict:
+        """Get environmental markets.
 
         Returns:
             A list of Python dictionaries like: [{data: ...,
