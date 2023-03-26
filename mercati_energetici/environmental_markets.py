@@ -1,13 +1,10 @@
 """Environmental Markets"""
 from __future__ import annotations
-
-from dataclasses import dataclass
 from datetime import date
 
 from .energy_markets import MercatiEnergetici
 
 
-@dataclass
 class MercatiAmbientali(MercatiEnergetici):
     """
     Environmental market.
