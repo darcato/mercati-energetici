@@ -79,7 +79,11 @@ class MercatiEnergetici:
                 {"Content-Type": content_type, "response": text},
             )
 
-        return await response.json()
+        data = await response.json()
+        if data is None or not data:
+            raise MercatiEnergeticiRequestError("Requested data not found")
+
+        return data
 
     async def general_conditions(self, language="EN") -> dict:
         """Get general usage conditions.
@@ -111,7 +115,7 @@ class MercatiEnergetici:
                                        lingua: ...,
                                        testo: ...,
                                        ultimoAggiornamento: ...,
-                                       tipo: 'CG'}
+                                       tipo: 'DI'}
         """
 
         data = await self._request(

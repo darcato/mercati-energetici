@@ -110,7 +110,7 @@ class MercatiElettrici(MercatiEnergetici):
 
         bought, sold = await self.all_volumes(market, day)
         if zone not in bought.keys():
-            raise KeyError(
+            raise MercatiEnergeticiZoneError(
                 f"Zone '{zone}' not found. Available zones are: {list(bought.keys())}"
             )
         return bought[zone], sold[zone]

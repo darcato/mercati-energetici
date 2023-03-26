@@ -15,7 +15,3 @@ class MercatiEnergeticiZoneError(MercatiEnergeticiError):
 
 class MercatiEnergeticiRequestError(MercatiEnergeticiError):
     """GME APP API wrong request input variables."""
-
-    def __init__(self, data: dict) -> None:
-        super().__init__(f'{data["text"]} (error {data["code"]})')
-        self.code = data["code"]
