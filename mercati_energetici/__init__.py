@@ -17,7 +17,7 @@ from .exceptions import (
 
 @dataclass
 class MercatiEnergetici:
-    """Base class for handling connections with the GME API."""
+    """Base class for handling connections with the GME APP API."""
 
     session: ClientSession | None = None
 
@@ -25,10 +25,10 @@ class MercatiEnergetici:
         self,
         uri: str,
     ) -> dict[str, Any]:
-        """Handle a request to the GME API.
+        """Handle a request to the GME APP API.
 
         A generic method for sending/handling HTTP requests done against
-        the GME API.
+        the GME APP API.
 
         Args:
             uri: Request URI, for example, '/GetMarkets'
@@ -129,7 +129,7 @@ class MercatiEnergetici:
         """Async enter.
 
         Returns:
-            The MercatoEnergetico object.
+            The MercatiEnergetici object.
         """
         return self
 

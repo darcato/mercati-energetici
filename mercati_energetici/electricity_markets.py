@@ -4,10 +4,12 @@ from datetime import date
 
 
 @dataclass
-class MercatoElettrico(MercatiEnergetici):
-    """Electricity Market."""
-
-    market: str = "MGP"
+class MercatiElettrici(MercatiEnergetici):
+    """
+    Electricity Markets.
+    See: https://www.mercatoelettrico.org/En/Mercati/MercatoElettrico/IlMercatoElettrico.aspx
+    for an explanation of the markets.
+    """
 
     async def electricity_markets(self) -> dict:
         """Get electricity markets.
@@ -21,11 +23,12 @@ class MercatoElettrico(MercatiEnergetici):
         data = await self._request("/GetMercatiElettrici")
         return data
 
-    async def all_prices(self, day: date = None) -> dict:
-        """Get electricity prices for a specific day on all the market zones.
+    async def all_prices(self, market: str, day: date = None) -> dict:
+        """Get electricity prices in €/MWh for a specific day on all the market zones.
 
         Args:
-            day: get prices of this date
+            market: The market to get prices from.
+            day: Get prices of this date. Default is today.
 
         Returns:
             A Python dictionary like: {zone: { hour : price_per_MWh }}
@@ -35,7 +38,7 @@ class MercatoElettrico(MercatiEnergetici):
             day = date.today()
         data = await self._request(
             "/GetPrezziME/{year:4d}{month:02d}{day:02d}/{market}".format(
-                day=day.day, month=day.month, year=day.year, market=self.market
+                day=day.day, month=day.month, year=day.year, market=market
             )
         )
         prices = {record["zona"]: {} for record in data if "zona" in record}
@@ -43,29 +46,32 @@ class MercatoElettrico(MercatiEnergetici):
             prices[record["zona"]][record["ora"] - 1] = record["prezzo"]
         return prices
 
-    async def prices(self, day: date = None, zone: str = "PUN") -> dict:
-        """Get electricity prices for a specific day and zone.
+    async def prices(self, market: str, day: date = None, zone: str = "PUN") -> dict:
+        """Get electricity prices in €/MWh for a specific day and zone.
 
         Args:
-            day: get prices of this date
-            zone: one of ["NORD", "SUD", ...]
+            market: The market to get prices from.
+            day: Get prices of this date. Default is today.
+            zone: One of ["CALA","CNOR","CSUD","NORD","PUN","SARD","SICI","SUD"].
+                  Default is "PUN" (whole Italy).
 
         Returns:
             A Python dictionary like: { hour : price_per_MWh }
         """
 
-        prices = await self.all_prices(day)
+        prices = await self.all_prices(market, day)
         if zone not in prices.keys():
             raise KeyError(
                 f"Zone '{zone}' not found. Available zones are: {list(prices.keys())}"
             )
         return prices[zone]
 
-    async def all_volumes(self, day: date = None) -> tuple[dict, dict]:
+    async def all_volumes(self, market: str, day: date = None) -> tuple[dict, dict]:
         """Get bought and sold volume for a specific day on all the market zones.
 
         Args:
-            day: get volumes of this date
+            market: The market to get volumes from.
+            day: Get volumes of this date. Default is today.
 
         Returns:
             A Python dictionary like: {zone: { hour : MWh }}
@@ -75,7 +81,7 @@ class MercatoElettrico(MercatiEnergetici):
             day = date.today()
         data = await self._request(
             "/GetQuantitaME/{year:4d}{month:02d}{day:02d}/{market}".format(
-                day=day.day, month=day.month, year=day.year, market=self.market
+                day=day.day, month=day.month, year=day.year, market=market
             )
         )
         bought = {record["zona"]: {} for record in data if "zona" in record}
@@ -86,19 +92,21 @@ class MercatoElettrico(MercatiEnergetici):
         return bought, sold
 
     async def volumes(
-        self, day: date = None, zone: str = "Totale"
+        self, market: str, day: date = None, zone: str = "Totale"
     ) -> tuple[dict, dict]:
         """Get bought and sold volume for a specific day and zone.
 
         Args:
-            day: get volumes of this date
-            zone: one of ["NORD", "SUD", ...]
+            market: The market to get volumes from.
+            day: Get volumes of this date. Default is today.
+            zone: One of ["CALA","CNOR","CSUD","NORD","SARD","SICI","SUD","Totale"].
+                  Default is "Totale" (whole Italy).
 
         Returns:
             A Python dictionary like: { hour : MWh }
         """
 
-        bought, sold = await self.all_quantities(day)
+        bought, sold = await self.all_volumes(market, day)
         if zone not in bought.keys():
             raise KeyError(
                 f"Zone '{zone}' not found. Available zones are: {list(bought.keys())}"
@@ -109,10 +117,10 @@ class MercatoElettrico(MercatiEnergetici):
         """Get liquidity of electricity markets.
 
         Args:
-            day: get liquidity of this date
+            day: Get liquidity of this date. Default is today.
 
         Returns:
-            A Python dictionary like: {ora: liquidity}.
+            A Python dictionary like: {hour: liquidity}.
         """
 
         if day is None:
@@ -122,5 +130,5 @@ class MercatoElettrico(MercatiEnergetici):
                 day=day.day, month=day.month, year=day.year
             )
         )
-        liquidity = {x["ora"]: x["liquidita"] for x in data}
+        liquidity = {x["ora"] - 1: x["liquidita"] for x in data}
         return liquidity

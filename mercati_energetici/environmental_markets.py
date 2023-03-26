@@ -4,28 +4,31 @@ from datetime import date
 
 
 @dataclass
-class MercatoAmbientale(MercatiEnergetici):
-    """Environmental market."""
+class MercatiAmbientali(MercatiEnergetici):
+    """
+    Environmental market.
+    See: https://www.mercatoelettrico.org/En/Mercati/TEE/CosaSonoTee.aspx
+    for an explanation of the markets.
+    """
 
-    market: str = "GO"
-
-    async def environmental_markets(self) -> dict:
+    async def environmental_markets(self) -> list[dict]:
         """Get environmental markets.
 
         Returns:
-            A list of Python dictionaries like: [{data: ...,
-                                                  mercato: ...,
-                                                  volumi: ...]
+            A list of Python dictionaries like: [{"data": 20230323,
+                                                  "mercato": "GO",
+                                                  "volumi": 136917 }]
         """
 
         data = await self._request("/GetMercatiAmbientali")
         return data
-    
-    async def results(self, day: date) -> dict:
+
+    async def trading_results(self, market: str, day: date = None) -> list[dict]:
         """Get environmental market results.
 
         Args:
-            date: Date of the market.
+            market: The market to get results from.
+            day: Date of the market. Default is today.
 
         Returns:
             A list of Python dictionaries like: [{"data": 20230323,
@@ -42,7 +45,7 @@ class MercatoAmbientale(MercatiEnergetici):
             day = date.today()
         data = await self._request(
             "/GetEsitiAmbiente/{year:4d}{month:02d}{day:02d}/{market}".format(
-                day=day.day, month=day.month, year=day.year, market=self.market
+                day=day.day, month=day.month, year=day.year, market=market
             )
         )
         return data
