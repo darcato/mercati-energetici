@@ -15,7 +15,7 @@ class MercatiAmbientali(MercatiEnergetici):
     for an explanation of the markets.
     """
 
-    async def environmental_markets(self) -> list[dict]:
+    async def markets(self) -> list[dict]:
         """Get environmental markets.
 
         Returns:

@@ -16,7 +16,7 @@ class MercatiElettrici(MercatiEnergetici):
     for an explanation of the markets.
     """
 
-    async def electricity_markets(self) -> dict:
+    async def markets(self) -> dict:
         """Get electricity markets.
 
         Returns:

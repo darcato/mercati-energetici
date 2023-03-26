@@ -15,7 +15,7 @@ class MercatiGas(MercatiEnergetici):
     for an explanation of the markets.
     """
 
-    async def gas_markets(self) -> list[dict]:
+    async def markets(self) -> list[dict]:
         """Get gas markets.
 
         Returns:
