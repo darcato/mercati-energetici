@@ -1,6 +1,10 @@
-from . import MercatiEnergetici
+"""Gas Markets"""
+from __future__ import annotations
+
 from dataclasses import dataclass
 from datetime import date
+
+from .energy_markets import MercatiEnergetici
 
 
 @dataclass

@@ -8,8 +8,10 @@ class MercatiEnergeticiError(Exception):
 class MercatiEnergeticiConnectionError(MercatiEnergeticiError):
     """GME APP API connection exception."""
 
+
 class MercatiEnergeticiZoneError(MercatiEnergeticiError):
     """Zone not found exception."""
+
 
 class MercatiEnergeticiRequestError(MercatiEnergeticiError):
     """GME APP API wrong request input variables."""

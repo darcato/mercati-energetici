@@ -1,6 +1,11 @@
-from . import MercatiEnergetici
+"""Electricity Markets"""
+from __future__ import annotations
+
 from dataclasses import dataclass
 from datetime import date
+
+from .energy_markets import MercatiEnergetici
+from .exceptions import MercatiEnergeticiZoneError
 
 
 @dataclass
@@ -61,7 +66,7 @@ class MercatiElettrici(MercatiEnergetici):
 
         prices = await self.all_prices(market, day)
         if zone not in prices.keys():
-            raise KeyError(
+            raise MercatiEnergeticiZoneError(
                 f"Zone '{zone}' not found. Available zones are: {list(prices.keys())}"
             )
         return prices[zone]
