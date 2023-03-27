@@ -91,9 +91,7 @@ class TestMercatiElettrici:
         keys = set(prices.keys())
         # Day can be between 23 and 25 hours long, if there is a daylight saving time change
         assert (
-            keys == set(range(24))
-            or keys == set(range(23))
-            or keys == set(range(25))
+            keys == set(range(24)) or keys == set(range(23)) or keys == set(range(25))
         )
         with pytest.raises(MercatiEnergeticiRequestError):
             await mercati_elettrici.prices("NONEXISTENT")
@@ -142,9 +140,7 @@ class TestMercatiElettrici:
         keys = set(bought.keys())
         # Day can be between 23 and 25 hours long, if there is a daylight saving time change
         assert (
-            keys == set(range(24))
-            or keys == set(range(23))
-            or keys == set(range(25))
+            keys == set(range(24)) or keys == set(range(23)) or keys == set(range(25))
         )
         assert keys == set(sold.keys())
         with pytest.raises(MercatiEnergeticiRequestError):
@@ -162,9 +158,7 @@ class TestMercatiElettrici:
         keys = set(liquidity.keys())
         # Day can be between 23 and 25 hours long, if there is a daylight saving time change
         assert (
-            keys == set(range(24))
-            or keys == set(range(23))
-            or keys == set(range(25))
+            keys == set(range(24)) or keys == set(range(23)) or keys == set(range(25))
         )
         # Older dates are not available from the API
         with pytest.raises(MercatiEnergeticiRequestError):
