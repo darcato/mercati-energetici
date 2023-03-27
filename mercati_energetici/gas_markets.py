@@ -12,7 +12,7 @@ class MercatiGas(MercatiEnergetici):
     for an explanation of the markets.
     """
 
-    async def markets(self) -> list[dict]:
+    async def get_markets(self) -> list[dict]:
         """Get gas markets.
 
         Returns:
@@ -25,7 +25,7 @@ class MercatiGas(MercatiEnergetici):
         data = await self._request("/GetMercatiGas")
         return data
 
-    async def continuous_trading_results(
+    async def get_continuous_trading_results(
         self, product: str, day: date = None
     ) -> list[dict]:
         """Get gas market results on the continuous trading mode.
@@ -57,7 +57,7 @@ class MercatiGas(MercatiEnergetici):
         )
         return data
 
-    async def auction_trading_results(
+    async def get_auction_trading_results(
         self, product: str, day: date = None
     ) -> list[dict]:
         """Get gas market results on the auction mode.
@@ -86,7 +86,7 @@ class MercatiGas(MercatiEnergetici):
         )
         return data
 
-    async def stored_gas_trading_results(
+    async def get_stored_gas_trading_results(
         self, company: str, day: date = None
     ) -> list[dict]:
         """Get gas market results for the stored gas.

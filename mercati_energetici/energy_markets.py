@@ -85,7 +85,7 @@ class MercatiEnergetici:
 
         return data
 
-    async def general_conditions(self, language="EN") -> dict:
+    async def get_general_conditions(self, language="EN") -> dict:
         """Get general usage conditions.
 
         Args:
@@ -104,7 +104,7 @@ class MercatiEnergetici:
         )
         return data
 
-    async def disclaimer(self, language="EN") -> dict:
+    async def get_disclaimer(self, language="EN") -> dict:
         """Get disclaimer.
 
         Args:

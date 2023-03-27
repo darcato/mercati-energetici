@@ -13,7 +13,7 @@ class MercatiElettrici(MercatiEnergetici):
     for an explanation of the markets.
     """
 
-    async def markets(self) -> dict:
+    async def get_markets(self) -> dict:
         """Get electricity markets.
 
         Returns:
@@ -25,7 +25,7 @@ class MercatiElettrici(MercatiEnergetici):
         data = await self._request("/GetMercatiElettrici")
         return data
 
-    async def all_prices(self, market: str, day: date = None) -> dict:
+    async def get_all_prices(self, market: str, day: date = None) -> dict:
         """Get electricity prices in €/MWh for a specific day on all the market zones.
 
         Args:
@@ -48,7 +48,7 @@ class MercatiElettrici(MercatiEnergetici):
             prices[record["zona"]][record["ora"] - 1] = record["prezzo"]
         return prices
 
-    async def prices(self, market: str, day: date = None, zone: str = "PUN") -> dict:
+    async def get_prices(self, market: str, day: date = None, zone: str = "PUN") -> dict:
         """Get electricity prices in €/MWh for a specific day and zone.
 
         Args:
@@ -61,14 +61,14 @@ class MercatiElettrici(MercatiEnergetici):
             A Python dictionary like: { hour : price_per_MWh }
         """
 
-        prices = await self.all_prices(market, day)
+        prices = await self.get_all_prices(market, day)
         if zone not in prices.keys():
             raise MercatiEnergeticiZoneError(
                 f"Zone '{zone}' not found. Available zones are: {list(prices.keys())}"
             )
         return prices[zone]
 
-    async def all_volumes(self, market: str, day: date = None) -> tuple[dict, dict]:
+    async def get_all_volumes(self, market: str, day: date = None) -> tuple[dict, dict]:
         """Get bought and sold volume for a specific day on all the market zones.
 
         Args:
@@ -93,7 +93,7 @@ class MercatiElettrici(MercatiEnergetici):
             sold[record["zona"]][record["ora"] - 1] = record["vendite"]
         return bought, sold
 
-    async def volumes(
+    async def get_volumes(
         self, market: str, day: date = None, zone: str = "Totale"
     ) -> tuple[dict, dict]:
         """Get bought and sold volume for a specific day and zone.
@@ -108,14 +108,14 @@ class MercatiElettrici(MercatiEnergetici):
             A Python dictionary like: { hour : MWh }
         """
 
-        bought, sold = await self.all_volumes(market, day)
+        bought, sold = await self.get_all_volumes(market, day)
         if zone not in bought.keys():
             raise MercatiEnergeticiZoneError(
                 f"Zone '{zone}' not found. Available zones are: {list(bought.keys())}"
             )
         return bought[zone], sold[zone]
 
-    async def liquidity(self, day: date = None) -> dict:
+    async def get_liquidity(self, day: date = None) -> dict:
         """Get liquidity of electricity markets.
 
         Args:

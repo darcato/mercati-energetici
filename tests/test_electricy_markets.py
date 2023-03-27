@@ -18,7 +18,7 @@ async def mercati_elettrici():
 @pytest.mark.asyncio
 class TestMercatiElettrici:
     async def test_general_condtions(self, mercati_elettrici):
-        general_conditions = await mercati_elettrici.general_conditions()
+        general_conditions = await mercati_elettrici.get_general_conditions()
         assert general_conditions is not None
         assert type(general_conditions) is dict
         assert set(["id", "lingua", "testo", "ultimoAggiornamento", "tipo"]) == set(
@@ -26,17 +26,17 @@ class TestMercatiElettrici:
         )
         assert general_conditions["tipo"] == "CG"
         assert general_conditions["lingua"] == "EN"
-        general_conditions = await mercati_elettrici.general_conditions(language="en")
+        general_conditions = await mercati_elettrici.get_general_conditions(language="en")
         assert general_conditions["lingua"] == "EN"
-        general_conditions = await mercati_elettrici.general_conditions(language="IT")
+        general_conditions = await mercati_elettrici.get_general_conditions(language="IT")
         assert general_conditions["lingua"] == "IT"
-        general_conditions = await mercati_elettrici.general_conditions(language="it")
+        general_conditions = await mercati_elettrici.get_general_conditions(language="it")
         assert general_conditions["lingua"] == "IT"
         with pytest.raises(MercatiEnergeticiError):
-            await mercati_elettrici.general_conditions(language="FR")
+            await mercati_elettrici.get_general_conditions(language="FR")
 
     async def test_disclaimer(self, mercati_elettrici):
-        disclaimer = await mercati_elettrici.disclaimer()
+        disclaimer = await mercati_elettrici.get_disclaimer()
         assert disclaimer is not None
         assert type(disclaimer) is dict
         assert set(["id", "lingua", "testo", "ultimoAggiornamento", "tipo"]) == set(
@@ -44,17 +44,17 @@ class TestMercatiElettrici:
         )
         assert disclaimer["tipo"] == "DI"
         assert disclaimer["lingua"] == "EN"
-        disclaimer = await mercati_elettrici.disclaimer(language="en")
+        disclaimer = await mercati_elettrici.get_disclaimer(language="en")
         assert disclaimer["lingua"] == "EN"
-        disclaimer = await mercati_elettrici.disclaimer(language="IT")
+        disclaimer = await mercati_elettrici.get_disclaimer(language="IT")
         assert disclaimer["lingua"] == "IT"
-        disclaimer = await mercati_elettrici.disclaimer(language="it")
+        disclaimer = await mercati_elettrici.get_disclaimer(language="it")
         assert disclaimer["lingua"] == "IT"
         with pytest.raises(MercatiEnergeticiError):
-            await mercati_elettrici.disclaimer(language="FR")
+            await mercati_elettrici.get_disclaimer(language="FR")
 
     async def test_markets(self, mercati_elettrici):
-        markets = await mercati_elettrici.markets()
+        markets = await mercati_elettrici.get_markets()
         assert markets is not None
         assert type(markets) is list
         assert len(markets) > 0
@@ -63,7 +63,7 @@ class TestMercatiElettrici:
             assert set(("data", "mercato", "volumi")) == set(market.keys())
 
     async def test_all_prices(self, mercati_elettrici):
-        all_prices = await mercati_elettrici.all_prices("MGP")
+        all_prices = await mercati_elettrici.get_all_prices("MGP")
         assert all_prices is not None
         assert type(all_prices) is dict
         assert set(
@@ -79,13 +79,13 @@ class TestMercatiElettrici:
                 or keys == set(range(25))
             )
         with pytest.raises(MercatiEnergeticiRequestError):
-            await mercati_elettrici.all_prices("NONEXISTENT")
+            await mercati_elettrici.get_all_prices("NONEXISTENT")
         # Older dates are not available from the API
         with pytest.raises(MercatiEnergeticiRequestError):
-            await mercati_elettrici.all_prices("MGP", date(2020, 1, 1))
+            await mercati_elettrici.get_all_prices("MGP", date(2020, 1, 1))
 
     async def test_prices(self, mercati_elettrici):
-        prices = await mercati_elettrici.prices("MGP")
+        prices = await mercati_elettrici.get_prices("MGP")
         assert prices is not None
         assert type(prices) is dict
         keys = set(prices.keys())
@@ -94,15 +94,15 @@ class TestMercatiElettrici:
             keys == set(range(24)) or keys == set(range(23)) or keys == set(range(25))
         )
         with pytest.raises(MercatiEnergeticiRequestError):
-            await mercati_elettrici.prices("NONEXISTENT")
+            await mercati_elettrici.get_prices("NONEXISTENT")
         # Older dates are not available from the API
         with pytest.raises(MercatiEnergeticiRequestError):
-            await mercati_elettrici.prices("MGP", date(2020, 1, 1))
+            await mercati_elettrici.get_prices("MGP", date(2020, 1, 1))
         with pytest.raises(MercatiEnergeticiZoneError):
-            await mercati_elettrici.prices("MGP", zone="NONEXISTENT")
+            await mercati_elettrici.get_prices("MGP", zone="NONEXISTENT")
 
     async def test_all_volumes(self, mercati_elettrici):
-        all_volumes = await mercati_elettrici.all_volumes("MGP")
+        all_volumes = await mercati_elettrici.get_all_volumes("MGP")
         assert all_volumes is not None
         assert type(all_volumes) is tuple
         assert len(all_volumes) == 2
@@ -124,13 +124,13 @@ class TestMercatiElettrici:
                 or keys == set(range(25))
             )
         with pytest.raises(MercatiEnergeticiRequestError):
-            await mercati_elettrici.all_volumes("NONEXISTENT")
+            await mercati_elettrici.get_all_volumes("NONEXISTENT")
         # Older dates are not available from the API
         with pytest.raises(MercatiEnergeticiRequestError):
-            await mercati_elettrici.all_volumes("MGP", date(2020, 1, 1))
+            await mercati_elettrici.get_all_volumes("MGP", date(2020, 1, 1))
 
     async def test_volumes(self, mercati_elettrici):
-        volumes = await mercati_elettrici.volumes("MGP")
+        volumes = await mercati_elettrici.get_volumes("MGP")
         assert volumes is not None
         assert type(volumes) is tuple
         assert len(volumes) == 2
@@ -144,15 +144,15 @@ class TestMercatiElettrici:
         )
         assert keys == set(sold.keys())
         with pytest.raises(MercatiEnergeticiRequestError):
-            await mercati_elettrici.volumes("NONEXISTENT")
+            await mercati_elettrici.get_volumes("NONEXISTENT")
         # Older dates are not available from the API
         with pytest.raises(MercatiEnergeticiRequestError):
-            await mercati_elettrici.volumes("MGP", date(2020, 1, 1))
+            await mercati_elettrici.get_volumes("MGP", date(2020, 1, 1))
         with pytest.raises(MercatiEnergeticiZoneError):
-            await mercati_elettrici.volumes("MGP", zone="NONEXISTENT")
+            await mercati_elettrici.get_volumes("MGP", zone="NONEXISTENT")
 
     async def test_liquidity(self, mercati_elettrici):
-        liquidity = await mercati_elettrici.liquidity()
+        liquidity = await mercati_elettrici.get_liquidity()
         assert liquidity is not None
         assert type(liquidity) is dict
         keys = set(liquidity.keys())
@@ -162,4 +162,4 @@ class TestMercatiElettrici:
         )
         # Older dates are not available from the API
         with pytest.raises(MercatiEnergeticiRequestError):
-            await mercati_elettrici.liquidity(date(2020, 1, 1))
+            await mercati_elettrici.get_liquidity(date(2020, 1, 1))

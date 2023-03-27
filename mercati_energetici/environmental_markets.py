@@ -12,7 +12,7 @@ class MercatiAmbientali(MercatiEnergetici):
     for an explanation of the markets.
     """
 
-    async def markets(self) -> list[dict]:
+    async def get_markets(self) -> list[dict]:
         """Get environmental markets.
 
         Returns:
@@ -24,7 +24,7 @@ class MercatiAmbientali(MercatiEnergetici):
         data = await self._request("/GetMercatiAmbientali")
         return data
 
-    async def trading_results(self, market: str, day: date = None) -> list[dict]:
+    async def get_trading_results(self, market: str, day: date = None) -> list[dict]:
         """Get environmental market results.
 
         Args:
