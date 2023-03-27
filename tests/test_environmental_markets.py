@@ -52,6 +52,15 @@ class TestMercatiAmbientali:
         with pytest.raises(MercatiEnergeticiError):
             await mercati_ambientali.disclaimer(language="FR")
 
+    async def test_markets(self, mercati_ambientali):
+        markets = await mercati_ambientali.markets()
+        assert markets is not None
+        assert type(markets) is list
+        assert len(markets) > 0
+        for market in markets:
+            assert type(market) is dict
+            assert set(["data", "mercato", "volumi"]) == set(market.keys())
+
     async def test_trading_results(self, mercati_ambientali):
         results = await mercati_ambientali.trading_results("GO", day=date(2023, 3, 23))
         assert results is not None
