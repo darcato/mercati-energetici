@@ -26,12 +26,12 @@ class MercatiGas(MercatiEnergetici):
         return data
 
     async def continuous_trading_results(
-        self, market: str, day: date = None
+        self, product: str, day: date = None
     ) -> list[dict]:
         """Get gas market results on the continuous trading mode.
 
         Args:
-            market: the market to get results from
+            product: the market-day to get results from
             day: Date of the market negotiation. Default is today.
 
         Returns:
@@ -51,19 +51,19 @@ class MercatiGas(MercatiEnergetici):
         if day is None:
             day = date.today()
         data = await self._request(
-            "/GetEsitiGasContinuo/{year:4d}{month:02d}{day:02d}/{market}".format(
-                day=day.day, month=day.month, year=day.year, market=market
+            "/GetEsitiGasContinuo/{year:4d}{month:02d}{day:02d}/{product}".format(
+                day=day.day, month=day.month, year=day.year, product=product
             )
         )
         return data
 
     async def auction_trading_results(
-        self, market: str, day: date = None
+        self, product: str, day: date = None
     ) -> list[dict]:
         """Get gas market results on the auction mode.
 
         Args:
-            market: the market to get results from.
+            product: the market-day to get results from.
             day: Date of the market negotiations. Default is today.
 
         Returns:
@@ -80,19 +80,19 @@ class MercatiGas(MercatiEnergetici):
         if day is None:
             day = date.today()
         data = await self._request(
-            "/GetEsitiGasAsta/{year:4d}{month:02d}{day:02d}/{market}".format(
-                day=day.day, month=day.month, year=day.year, market=market
+            "/GetEsitiGasAsta/{year:4d}{month:02d}{day:02d}/{product}".format(
+                day=day.day, month=day.month, year=day.year, product=product
             )
         )
         return data
 
     async def stored_gas_trading_results(
-        self, market: str, day: date = None
+        self, company: str, day: date = None
     ) -> list[dict]:
         """Get gas market results for the stored gas.
 
         Args:
-            market: the market to get results from.
+            product: the market-company to get results from.
             day: Date of the market negotiations. Default is today.
 
         Returns:
@@ -109,8 +109,8 @@ class MercatiGas(MercatiEnergetici):
         if day is None:
             day = date.today()
         data = await self._request(
-            "/GetEsitiGasMGS/{year:4d}{month:02d}{day:02d}/{market}".format(
-                day=day.day, month=day.month, year=day.year, market=market
+            "/GetEsitiGasMGS/{year:4d}{month:02d}{day:02d}/{company}".format(
+                day=day.day, month=day.month, year=day.year, company=company.replace("MGS-", "")
             )
         )
         return data
