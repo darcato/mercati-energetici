@@ -125,6 +125,19 @@ class MGP(MercatiElettrici):
                 f"Zone '{zone}' not found. Available zones are: {list(prices.keys())}"
             )
         return prices[zone]
+    
+    async def daily_pun(self, day: date = None) -> float:
+        """Get the PUN price for a specific day.
+
+        Args:
+            day: Get prices of this date. Default is today.
+
+        Returns:
+            The PUN price in €/MWh.
+        """
+        prices = await self.get_prices(day, zone="PUN")
+        hourly_pun = list(prices.values())
+        return sum(hourly_pun) / len(hourly_pun)
 
     async def get_volumes(
         self, day: date = None, zone: str = "Totale"
