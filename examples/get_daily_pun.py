@@ -1,6 +1,6 @@
-"""Run manually to test the library."""
+"""How to get the average price of electricity in Italy (PUN) for a specific date."""
 import asyncio
-from mercati_energetici import MercatiElettrici, MGP
+from mercati_energetici import MGP
 from datetime import date
 
 
