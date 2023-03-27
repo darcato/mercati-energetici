@@ -7,7 +7,7 @@ from .energy_markets import MercatiEnergetici
 
 class MercatiGas(MercatiEnergetici):
     """
-    Gas markets.
+    Gas markets low level API wrapper.
     See: https://www.mercatoelettrico.org/en/Mercati/MGAS/MGas.aspx
     for an explanation of the markets.
     """
