@@ -77,6 +77,10 @@ class TestMercatiElettrici:
             assert set(("data", "ora", "mercato", "zona", "prezzo")) == set(price.keys())
             assert price["data"] == int(date.today().strftime("%Y%m%d"))
             assert price["mercato"] == "MGP"
+        data = await mercati_elettrici.get_prices("MGP", date(2023, 3, 2))
+        assert data[0]["data"] == 20230302
+        data = await mercati_elettrici.get_prices("MGP", "20230303")
+        assert data[0]["data"] == 20230303
         with pytest.raises(MercatiEnergeticiRequestError):
             await mercati_elettrici.get_prices("NONEXISTENT")
         # Older dates are not available from the API
@@ -93,6 +97,10 @@ class TestMercatiElettrici:
             assert set(("data", "ora", "mercato", "zona", "acquisti", "vendite")) == set(volume.keys())
             assert volume["data"] == int(date.today().strftime("%Y%m%d"))
             assert volume["mercato"] == "MGP"
+        data = await mercati_elettrici.get_volumes("MGP", date(2023, 3, 2))
+        assert data[0]["data"] == 20230302
+        data = await mercati_elettrici.get_volumes("MGP", "20230303")
+        assert data[0]["data"] == 20230303
         with pytest.raises(MercatiEnergeticiRequestError):
             await mercati_elettrici.get_volumes("NONEXISTENT")
         # Older dates are not available from the API
@@ -109,6 +117,10 @@ class TestMercatiElettrici:
             assert type(hour) is dict
             assert set(("data", "ora", "liquidita")) == set(hour.keys())
             assert hour["data"] == int(date.today().strftime("%Y%m%d"))
+        data = await mercati_elettrici.get_liquidity(date(2023, 3, 2))
+        assert data[0]["data"] == 20230302
+        data = await mercati_elettrici.get_liquidity("20230303")
+        assert data[0]["data"] == 20230303
         # Older dates are not available from the API
         with pytest.raises(MercatiEnergeticiRequestError):
             await mercati_elettrici.get_liquidity(date(2020, 1, 1))

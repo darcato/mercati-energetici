@@ -80,6 +80,10 @@ class TestMercatiAmbientali:
                     "volumi",
                 ]
             ) == set(res.keys())
+        data = await mercati_ambientali.get_trading_results("GO", date(2023, 3, 2))
+        assert data[0]["data"] == 20230302
+        data = await mercati_ambientali.get_trading_results("GO", "20230303")
+        assert data[0]["data"] == 20230303
         with pytest.raises(MercatiEnergeticiRequestError):
             await mercati_ambientali.get_trading_results("NONEXISTENT")
         with pytest.raises(MercatiEnergeticiRequestError):

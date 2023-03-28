@@ -66,7 +66,7 @@ class MercatiEnergetici:
         if response.status == 502:
             raise MercatiEnergeticiConnectionError("The GME API is unreachable, ")
 
-        if response.status == 400:
+        if response.status == 404:
             raise MercatiEnergeticiRequestError("Not Found: " + await response.text())
 
         response.raise_for_status()
@@ -98,6 +98,7 @@ class MercatiEnergetici:
         if day is None:
             day = date.today()
         elif isinstance(day, str):
+            # Parse it to check if it's a valid date
             day = datetime.strptime(day, "%Y%m%d").date()
         elif not isinstance(day, date):
             raise TypeError(
