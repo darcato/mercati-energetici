@@ -24,7 +24,9 @@ class MercatiAmbientali(MercatiEnergetici):
         data = await self._request("/GetMercatiAmbientali")
         return data
 
-    async def get_trading_results(self, market: str, day: date = None) -> list[dict]:
+    async def get_trading_results(
+        self, market: str, day: date | str = None
+    ) -> list[dict]:
         """Get environmental market results.
 
         Args:
@@ -42,11 +44,9 @@ class MercatiAmbientali(MercatiEnergetici):
                                                   "volumi": 3115 },]
         """
 
-        if day is None:
-            day = date.today()
         data = await self._request(
-            "/GetEsitiAmbiente/{year:4d}{month:02d}{day:02d}/{market}".format(
-                day=day.day, month=day.month, year=day.year, market=market
+            "/GetEsitiAmbiente/{date}/{market}".format(
+                date=self._handle_date(day), market=market
             )
         )
         return data

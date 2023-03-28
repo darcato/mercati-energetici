@@ -26,7 +26,7 @@ class MercatiGas(MercatiEnergetici):
         return data
 
     async def get_continuous_trading_results(
-        self, product: str, day: date = None
+        self, product: str, day: date | str = None
     ) -> list[dict]:
         """Get gas market results on the continuous trading mode.
 
@@ -48,17 +48,15 @@ class MercatiGas(MercatiEnergetici):
                                                    "volumiMwh": 266688 }]
         """
 
-        if day is None:
-            day = date.today()
         data = await self._request(
-            "/GetEsitiGasContinuo/{year:4d}{month:02d}{day:02d}/{product}".format(
-                day=day.day, month=day.month, year=day.year, product=product
+            "/GetEsitiGasContinuo/{date}/{product}".format(
+                date=self._handle_date(day), product=product
             )
         )
         return data
 
     async def get_auction_trading_results(
-        self, product: str, day: date = None
+        self, product: str, day: date | str = None
     ) -> list[dict]:
         """Get gas market results on the auction mode.
 
@@ -77,17 +75,15 @@ class MercatiGas(MercatiEnergetici):
                                                   "venditeTso": 218976 }]
         """
 
-        if day is None:
-            day = date.today()
         data = await self._request(
-            "/GetEsitiGasAsta/{year:4d}{month:02d}{day:02d}/{product}".format(
-                day=day.day, month=day.month, year=day.year, product=product
+            "/GetEsitiGasAsta/{date}/{product}".format(
+                date=self._handle_date(day), product=product
             )
         )
         return data
 
     async def get_stored_gas_trading_results(
-        self, company: str, day: date = None
+        self, company: str, day: date | str = None
     ) -> list[dict]:
         """Get gas market results for the stored gas.
 
@@ -106,11 +102,10 @@ class MercatiGas(MercatiEnergetici):
                                                   "venditeSrg": 0 }]
         """
 
-        if day is None:
-            day = date.today()
         data = await self._request(
-            "/GetEsitiGasMGS/{year:4d}{month:02d}{day:02d}/{company}".format(
-                day=day.day, month=day.month, year=day.year, company=company.replace("MGS-", "")
+            "/GetEsitiGasMGS/{date}/{company}".format(
+                date=self._handle_date(day),
+                company=company.replace("MGS-", ""),
             )
         )
         return data

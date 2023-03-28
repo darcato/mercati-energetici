@@ -25,7 +25,7 @@ class MercatiElettrici(MercatiEnergetici):
         data = await self._request("/GetMercatiElettrici")
         return data
 
-    async def get_prices(self, market: str, day: date = None) -> list[dict]:
+    async def get_prices(self, market: str, day: date | str = None) -> list[dict]:
         """Get electricity prices in €/MWh for a specific day on all the market zones.
 
         Args:
@@ -40,16 +40,14 @@ class MercatiElettrici(MercatiEnergetici):
                                         "prezzo": 128.69 },]
         """
 
-        if day is None:
-            day = date.today()
         data = await self._request(
-            "/GetPrezziME/{year:4d}{month:02d}{day:02d}/{market}".format(
-                day=day.day, month=day.month, year=day.year, market=market
+            "/GetPrezziME/{date}/{market}".format(
+                date=self._handle_date(day), market=market
             )
         )
         return data
 
-    async def get_volumes(self, market: str, day: date = None) -> list[dict]:
+    async def get_volumes(self, market: str, day: date | str = None) -> list[dict]:
         """Get bought and sold volume for a specific day on all the market zones.
 
         Args:
@@ -65,16 +63,14 @@ class MercatiElettrici(MercatiEnergetici):
                                          "vendite": 1001.576 },]
         """
 
-        if day is None:
-            day = date.today()
         data = await self._request(
-            "/GetQuantitaME/{year:4d}{month:02d}{day:02d}/{market}".format(
-                day=day.day, month=day.month, year=day.year, market=market
+            "/GetQuantitaME/{date}/{market}".format(
+                date=self._handle_date(day), market=market
             )
         )
         return data
 
-    async def get_liquidity(self, day: date = None) -> dict:
+    async def get_liquidity(self, day: date | str = None) -> dict:
         """Get liquidity of electricity markets.
 
         Args:
@@ -86,12 +82,8 @@ class MercatiElettrici(MercatiEnergetici):
                                         "liquidita": 74.4741952239522 },]
         """
 
-        if day is None:
-            day = date.today()
         data = await self._request(
-            "/GetLiquidita/{year:4d}{month:02d}{day:02d}".format(
-                day=day.day, month=day.month, year=day.year
-            )
+            "/GetLiquidita/{date}".format(date=self._handle_date(day))
         )
         return data
 
@@ -103,7 +95,7 @@ class MGP(MercatiElettrici):
     Hours are in [0 -> 23].
     """
 
-    async def get_prices(self, day: date = None, zone: str = "PUN") -> dict:
+    async def get_prices(self, day: date | str = None, zone: str = "PUN") -> dict:
         """Get electricity prices in €/MWh for a specific day and zone.
 
         Args:
@@ -125,8 +117,8 @@ class MGP(MercatiElettrici):
                 f"Zone '{zone}' not found. Available zones are: {list(prices.keys())}"
             )
         return prices[zone]
-    
-    async def daily_pun(self, day: date = None) -> float:
+
+    async def daily_pun(self, day: date | str = None) -> float:
         """Get the PUN price for a specific day.
 
         Args:
@@ -140,7 +132,7 @@ class MGP(MercatiElettrici):
         return sum(hourly_pun) / len(hourly_pun)
 
     async def get_volumes(
-        self, day: date = None, zone: str = "Totale"
+        self, day: date | str = None, zone: str = "Totale"
     ) -> tuple[dict, dict]:
         """Get bought and sold volume for a specific day and zone.
 
@@ -166,7 +158,7 @@ class MGP(MercatiElettrici):
             )
         return bought[zone], sold[zone]
 
-    async def get_liquidity(self, day: date = None) -> dict:
+    async def get_liquidity(self, day: date | str = None) -> dict:
         """Get liquidity of electricity markets.
 
         Args:

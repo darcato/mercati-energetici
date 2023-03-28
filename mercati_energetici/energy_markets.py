@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from datetime import date, datetime
 from typing import Any
 
 from aiohttp import ClientSession
@@ -66,8 +67,7 @@ class MercatiEnergetici:
             raise MercatiEnergeticiConnectionError("The GME API is unreachable, ")
 
         if response.status == 400:
-            data = await response.json()
-            raise MercatiEnergeticiRequestError(data["message"])
+            raise MercatiEnergeticiRequestError("Not Found: " + await response.text())
 
         response.raise_for_status()
 
@@ -84,6 +84,26 @@ class MercatiEnergetici:
             raise MercatiEnergeticiRequestError("Requested data not found")
 
         return data
+
+    def _handle_date(self, day: date | str) -> str:
+        """Check and format a date to the YYYYMMDD format.
+
+        Args:
+            day: The date to handle.
+
+        Returns:
+            A string in the format YYYYMMDD.
+        """
+
+        if day is None:
+            day = date.today()
+        elif isinstance(day, str):
+            day = datetime.strptime(day, "%Y%m%d").date()
+        elif not isinstance(day, date):
+            raise TypeError(
+                "day must be a datetime.date or a string in the format YYYYMMDD"
+            )
+        return day.strftime("%Y%m%d")
 
     async def get_general_conditions(self, language="EN") -> dict:
         """Get general usage conditions.
