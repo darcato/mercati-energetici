@@ -16,9 +16,9 @@ class MercatiAmbientali(MercatiEnergetici):
         """Get environmental markets.
 
         Returns:
-            A list of Python dictionaries like: [{"data": 20230323,
+            A list of Python dictionaries like: ``[{"data": 20230323,
                                                   "mercato": "GO",
-                                                  "volumi": 136917 }]
+                                                  "volumi": 136917 }]``
         """
 
         data = await self._request("/GetMercatiAmbientali")
@@ -31,17 +31,18 @@ class MercatiAmbientali(MercatiEnergetici):
 
         Args:
             market: The market to get results from.
-            day: Date of the market. Default is today.
+            day: Date of the market. Default is today. A string in the format
+                    "YYYYMMDD" or a ``datetime.date`` object.
 
         Returns:
-            A list of Python dictionaries like: [{"data": 20230323,
+            A list of Python dictionaries like: ``[{"data": 20230323,
                                                   "mercato": "GO",
                                                   "tipologia": "Altro",
                                                   "periodo": "Altri Mesi 2022",
                                                   "prezzoRiferimento": 6.833425,
                                                   "prezzoMinimo": 6.1,
                                                   "prezzoMassimo": 9,
-                                                  "volumi": 3115 },]
+                                                  "volumi": 3115 },]``
         """
 
         data = await self._request(

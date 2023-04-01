@@ -1,0 +1,22 @@
+site_name: mercati-energetici
+theme:
+  name: material
+plugins:
+  - search
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          options:
+            show_source: false
+            show_root_heading: True
+            members_order: source
+
+nav:
+  - Home: index.md
+  - API Reference:
+    - MGP: 'reference/mgp.md'
+    - MercatiElettrici: 'reference/mercati_elettrici.md'
+    - MercatiGas: 'reference/mercati_gas.md'
+    - MercatiAmbientali: 'reference/mercati_ambientali.md'
+    - MercatiEnergetici: 'reference/mercati_energetici.md'

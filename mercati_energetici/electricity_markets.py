@@ -17,9 +17,9 @@ class MercatiElettrici(MercatiEnergetici):
         """Get electricity markets.
 
         Returns:
-            A list of Python dictionaries like: [{data: ...,
+            A list of Python dictionaries like: ``[{data: ...,
                                                   mercato: ...,
-                                                  volumi: ...}]
+                                                  volumi: ...}]``
         """
 
         data = await self._request("/GetMercatiElettrici")
@@ -30,14 +30,15 @@ class MercatiElettrici(MercatiEnergetici):
 
         Args:
             market: The market to get prices from.
-            day: Get prices of this date. Default is today.
+            day: Get prices of this date. Default is today. A string in the format
+                    "YYYYMMDD" or a ``datetime.date`` object.
 
         Returns:
-            A Python dictionary like: [{"data": 20230323,
+            A Python dictionary like: ``[{"data": 20230323,
                                         "ora": 1,
                                         "mercato": "MGP",
                                         "zona": "CALA",
-                                        "prezzo": 128.69 },]
+                                        "prezzo": 128.69 },]``
         """
 
         data = await self._request(
@@ -52,15 +53,16 @@ class MercatiElettrici(MercatiEnergetici):
 
         Args:
             market: The market to get volumes from.
-            day: Get volumes of this date. Default is today.
+            day: Get volumes of this date. Default is today. A string in the format
+                    "YYYYMMDD" or a ``datetime.date`` object.
 
         Returns:
-            A Python dictionary like: [{ "data": 20230323,
+            A Python dictionary like: ``[{ "data": 20230323,
                                          "ora": 1,
                                          "mercato": "MGP",
                                          "zona": "CALA",
                                          "acquisti": 482.198,
-                                         "vendite": 1001.576 },]
+                                         "vendite": 1001.576 },]``
         """
 
         data = await self._request(
@@ -74,12 +76,13 @@ class MercatiElettrici(MercatiEnergetici):
         """Get liquidity of electricity markets.
 
         Args:
-            day: Get liquidity of this date. Default is today.
+            day: Get liquidity of this date. Default is today. A string in the format
+                    "YYYYMMDD" or a ``datetime.date`` object.
 
         Returns:
-            A Python dictionary like: [{"data": 20230323,
+            A Python dictionary like: ``[{"data": 20230323,
                                         "ora": 1,
-                                        "liquidita": 74.4741952239522 },]
+                                        "liquidita": 74.4741952239522 },]``
         """
 
         data = await self._request(
@@ -99,13 +102,13 @@ class MGP(MercatiElettrici):
         """Get electricity prices in €/MWh for a specific day and zone.
 
         Args:
-            market: The market to get prices from.
-            day: Get prices of this date. Default is today.
+            day: Get prices of this date. Default is today. A string in the format
+                    "YYYYMMDD" or a ``datetime.date`` object.
             zone: One of ["CALA","CNOR","CSUD","NORD","PUN","SARD","SICI","SUD"].
                   Default is "PUN" (whole Italy).
 
         Returns:
-            A Python dictionary like: { hour : price_per_MWh }
+            A Python dictionary like: ``{ hour : price_per_MWh }``
         """
 
         data = await super().get_prices("MGP", day)
@@ -122,7 +125,8 @@ class MGP(MercatiElettrici):
         """Get the PUN price for a specific day.
 
         Args:
-            day: Get prices of this date. Default is today.
+            day: Get prices of this date. Default is today. A string in the format
+                    "YYYYMMDD" or a ``datetime.date`` object.
 
         Returns:
             The PUN price in €/MWh.
@@ -137,13 +141,13 @@ class MGP(MercatiElettrici):
         """Get bought and sold volume for a specific day and zone.
 
         Args:
-            market: The market to get volumes from.
-            day: Get volumes of this date. Default is today.
+            day: Get volumes of this date. Default is today. A string in the format
+                    "YYYYMMDD" or a ``datetime.date`` object.
             zone: One of ["CALA","CNOR","CSUD","NORD","SARD","SICI","SUD","Totale"].
                   Default is "Totale" (whole Italy).
 
         Returns:
-            A Python dictionary like: { hour : MWh }
+            Two Python dictionaries like: ``{ hour : MWh }``
         """
 
         data = await super().get_volumes("MGP", day)
@@ -162,10 +166,11 @@ class MGP(MercatiElettrici):
         """Get liquidity of electricity markets.
 
         Args:
-            day: Get liquidity of this date. Default is today.
+            day: Get liquidity of this date. Default is today. A string in the format
+                    "YYYYMMDD" or a ``datetime.date`` object.
 
         Returns:
-            A Python dictionary like: {hour: liquidity}.
+            A Python dictionary like: ``{hour: liquidity}``.
         """
         data = await super().get_liquidity(day)
         liquidity = {x["ora"] - 1: x["liquidita"] for x in data}

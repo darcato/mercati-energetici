@@ -16,10 +16,10 @@ class MercatiGas(MercatiEnergetici):
         """Get gas markets.
 
         Returns:
-            A list of Python dictionaries like: [{data: ...,
+            A list of Python dictionaries like: ``[{data: ...,
                                                   mercato: ...,
                                                   volumi: ...,
-                                                  tipo: ...}]
+                                                  tipo: ...}]``
         """
 
         data = await self._request("/GetMercatiGas")
@@ -32,10 +32,11 @@ class MercatiGas(MercatiEnergetici):
 
         Args:
             product: the market-day to get results from
-            day: Date of the market negotiation. Default is today.
+            day: Date of the market negotiation. Default is today. A string in
+                    the format "YYYYMMDD" or a ``datetime.date`` object.
 
         Returns:
-            A list of Python dictionaries like: [{ "data": 20230322,
+            A list of Python dictionaries like: ``[{ "data": 20230322,
                                                    "mercato": "MGP",
                                                    "prodotto": "MGP-2023-03-23",
                                                    "primoPrezzo": 45,
@@ -45,7 +46,7 @@ class MercatiGas(MercatiEnergetici):
                                                    "prezzoMedio": 44.430046,
                                                    "prezzoControllo": 44.638,
                                                    "volumiMw": 11112,
-                                                   "volumiMwh": 266688 }]
+                                                   "volumiMwh": 266688 }]``
         """
 
         data = await self._request(
@@ -62,17 +63,18 @@ class MercatiGas(MercatiEnergetici):
 
         Args:
             product: the market-day to get results from.
-            day: Date of the market negotiations. Default is today.
+            day: Date of the market negotiations. Default is today. A string in
+                    the format "YYYYMMDD" or a ``datetime.date`` object.
 
         Returns:
-            A list of Python dictionaries like: [{"data": 20230323,
+            A list of Python dictionaries like: ``[{"data": 20230323,
                                                   "mercato": "MGP",
                                                   "prodotto": "MGP-2023-03-24",
                                                   "prezzo": 45.351,
                                                   "volumiMw": 9124,
                                                   "volumiMwh": 218976,
                                                   "acquistiTso": 0,
-                                                  "venditeTso": 218976 }]
+                                                  "venditeTso": 218976 }]``
         """
 
         data = await self._request(
@@ -88,18 +90,19 @@ class MercatiGas(MercatiEnergetici):
         """Get gas market results for the stored gas.
 
         Args:
-            product: the market-company to get results from.
-            day: Date of the market negotiations. Default is today.
+            company: the market-company to get results from.
+            day: Date of the market negotiations. Default is today. A string in
+                    the format "YYYYMMDD" or a ``datetime.date`` object.
 
         Returns:
-            A list of Python dictionaries like: [{"data": 20230322,
+            A list of Python dictionaries like: ``[{"data": 20230322,
                                                   "dataFlusso": 20230322,
                                                   "impresaStoccaggio": "Stogit",
                                                   "tipologia": null,
                                                   "prezzo": 43.5,
                                                   "volumi": 16613.903,
                                                   "acquistiSrg": 6237.903,
-                                                  "venditeSrg": 0 }]
+                                                  "venditeSrg": 0 }]``
         """
 
         data = await self._request(

@@ -89,7 +89,8 @@ class MercatiEnergetici:
         """Check and format a date to the YYYYMMDD format.
 
         Args:
-            day: The date to handle.
+            day: The date to handle. It can be a ``datetime.date`` object or a string
+                in the format YYYYMMDD.
 
         Returns:
             A string in the format YYYYMMDD.
@@ -106,18 +107,18 @@ class MercatiEnergetici:
             )
         return day.strftime("%Y%m%d")
 
-    async def get_general_conditions(self, language="EN") -> dict:
+    async def get_general_conditions(self, language: str = "EN") -> dict:
         """Get general usage conditions.
 
         Args:
             language: 'EN' or 'IT'
 
         Returns:
-            A Python dictionary like: {id: ...,
+            A Python dictionary like: ``{id: ...,
                                        lingua: ...,
                                        testo: ...,
                                        ultimoAggiornamento: ...,
-                                       tipo: 'CG'}
+                                       tipo: 'CG'}``
         """
 
         data = await self._request(
@@ -125,18 +126,18 @@ class MercatiEnergetici:
         )
         return data
 
-    async def get_disclaimer(self, language="EN") -> dict:
+    async def get_disclaimer(self, language: str = "EN") -> dict:
         """Get disclaimer.
 
         Args:
             language: 'EN' or 'IT'
 
         Returns:
-            A Python dictionary like: {id: ...,
+            A Python dictionary like: ``{id: ...,
                                        lingua: ...,
                                        testo: ...,
                                        ultimoAggiornamento: ...,
-                                       tipo: 'DI'}
+                                       tipo: 'DI'}``
         """
 
         data = await self._request(

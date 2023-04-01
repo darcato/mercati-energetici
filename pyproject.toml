@@ -15,6 +15,8 @@ aiohttp = "^3.8.4"
 [tool.poetry.group.dev.dependencies]
 black = "^23.1.0"
 pytest-asyncio = "^0.21.0"
+mkdocs-material = "^9.1.4"
+mkdocstrings = {extras = ["python"], version = "^0.20.0"}
 
 [build-system]
 requires = ["poetry-core"]
