@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "mercati-energetici"
 version = "v0.1.0"
-description = "Unofficial python wrapper for the Italian energy markets API."
+description = "Async python client for the Italian energy markets API."
 authors = ["Davide Marcato"]
 readme = "README.md"
 packages = [{include = "mercati_energetici"}]

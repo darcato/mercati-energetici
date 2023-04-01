@@ -47,4 +47,4 @@ pip install mercati-energetici
 
 ### Usage
 
-See the [documentation](https://mercati-energetici.readthedocs.io/en/latest/) for more details.
+See the [documentation](https://darcato.github.io/mercati-energetici/) for more details.
