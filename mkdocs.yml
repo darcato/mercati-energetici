@@ -1,4 +1,10 @@
 site_name: mercati-energetici
+site_url: https://darcato.github.io/mercati-energetici/
+site_author: Davide Marcato
+site_description: Documentation for mercati-energetici python package
+repo_name: darcato/mercati-energetici
+repo_url: https://github.com/darcato/mercati-energetici
+
 theme:
   name: material
 plugins:
@@ -11,12 +17,20 @@ plugins:
             show_source: false
             show_root_heading: True
             members_order: source
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+
 
 nav:
-  - Home: index.md
+  - Getting Started: 'getting_started.md'
   - API Reference:
     - MGP: 'reference/mgp.md'
     - MercatiElettrici: 'reference/mercati_elettrici.md'
     - MercatiGas: 'reference/mercati_gas.md'
     - MercatiAmbientali: 'reference/mercati_ambientali.md'
     - MercatiEnergetici: 'reference/mercati_energetici.md'
+  - License: 'LICENSE.md'
