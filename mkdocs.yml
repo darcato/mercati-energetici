@@ -26,6 +26,8 @@ markdown_extensions:
 
 
 nav:
+  - Home: 'index.md'
+  - Installation: 'installation.md'
   - Getting Started: 'getting_started.md'
   - API Reference:
     - MGP: 'reference/mgp.md'

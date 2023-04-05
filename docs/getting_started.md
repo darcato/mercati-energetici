@@ -1,14 +1,4 @@
-# Async python library for Italian energy markets
-
-Unofficial wrapper of the GME ([Gestore dei Mercati Energetici S.p.A.](https://mercatoelettrico.org/It/Default.aspx)) APP API. It allows to retrieve prices and volumes traded on the Italian energy markets (electricity, gas and environmental) in a simple and asynchronous way.
-
-## Installation
-
-```bash
-pip install mercati-energetici
-```
-
-## Usage
+# Getting started
 
 The library exposes three low level classes to access the GME API: ``MercatiElettrici``, ``MercatiGas`` and ``MercatiAmbientali``. A further class, ``MGP``, offers a higher level interface over the day-ahead electricity market. Those can be imported from the ``mercati_energetici`` module like this:
 
@@ -34,7 +24,7 @@ if __name__ == "__main__":
 
 The dates are accepted as ``datetime.date`` objects or a ``str`` in the format ``YYYYMMDD`` like ``20230328`` for 28 March 2023. The default date is today.
 
-### MGP
+## MGP
 
 This class can be used to retrieve the average price of electricity in Italy (PUN) for a specific date. It also allows to retrieve hourly prices, volumes and liquidity of the day-ahead market. 
 
@@ -87,7 +77,7 @@ By default, the prices and volumes refer to the whole Italy, but it is possible 
 await mgp.get_prices(date(2023, 3, 28), zone="SUD")
 ```
 
-### MercatiElettrici
+## MercatiElettrici
 
 This class wraps the API for the day-ahead electricity market. It allows to retrieve hourly prices, volumes and liquidity of the day-ahead market exactly as served by GME.
 
@@ -143,7 +133,3 @@ Unlike ``MGP`` these methods return data as formatted by the API, for all the zo
     ...
 ]
 ```
-
-## Disclaimer
-
-This library is not affiliated with GME ([Gestore dei Mercati Energetici S.p.A.](https://mercatoelettrico.org/It/Default.aspx)) in any way. It is provided as is, without any warranty. By using this library, you agree to the terms of use of GME API, which can be obtained with ``get_general_conditions()`` or can be found [here](https://www.mercatoelettrico.org/it/tools/AccessoDati.aspx). Please, be aware that all the data belongs to GME and can't be used for profit. Also, be aware of the disclaimer from GME retrivable with ``get_disclaimer()``.
