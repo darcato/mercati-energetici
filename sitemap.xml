@@ -1,38 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
+         <loc>https://darcato.github.io/mercati-energetici/</loc>
+         <lastmod>2023-04-05</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://darcato.github.io/mercati-energetici/LICENSE/</loc>
-         <lastmod>2023-04-04</lastmod>
+         <lastmod>2023-04-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://darcato.github.io/mercati-energetici/getting_started/</loc>
-         <lastmod>2023-04-04</lastmod>
+         <lastmod>2023-04-05</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://darcato.github.io/mercati-energetici/installation/</loc>
+         <lastmod>2023-04-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://darcato.github.io/mercati-energetici/reference/mercati_ambientali/</loc>
-         <lastmod>2023-04-04</lastmod>
+         <lastmod>2023-04-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://darcato.github.io/mercati-energetici/reference/mercati_elettrici/</loc>
-         <lastmod>2023-04-04</lastmod>
+         <lastmod>2023-04-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://darcato.github.io/mercati-energetici/reference/mercati_energetici/</loc>
-         <lastmod>2023-04-04</lastmod>
+         <lastmod>2023-04-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://darcato.github.io/mercati-energetici/reference/mercati_gas/</loc>
-         <lastmod>2023-04-04</lastmod>
+         <lastmod>2023-04-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://darcato.github.io/mercati-energetici/reference/mgp/</loc>
-         <lastmod>2023-04-04</lastmod>
+         <lastmod>2023-04-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
