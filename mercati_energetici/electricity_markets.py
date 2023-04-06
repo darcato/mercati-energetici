@@ -9,7 +9,7 @@ from .exceptions import MercatiEnergeticiZoneError
 class MercatiElettrici(MercatiEnergetici):
     """
     Electricity Markets low level API wrapper.
-    See: https://www.mercatoelettrico.org/En/Mercati/MercatoElettrico/IlMercatoElettrico.aspx
+    See [the GME website](https://www.mercatoelettrico.org/En/Mercati/MercatoElettrico/IlMercatoElettrico.aspx)
     for an explanation of the markets.
     """
 

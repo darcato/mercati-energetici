@@ -8,7 +8,7 @@ from .energy_markets import MercatiEnergetici
 class MercatiAmbientali(MercatiEnergetici):
     """
     Environmental market low level API wrapper.
-    See: https://www.mercatoelettrico.org/En/Mercati/TEE/CosaSonoTee.aspx
+    See [the GME website](https://www.mercatoelettrico.org/En/Mercati/TEE/CosaSonoTee.aspx)
     for an explanation of the markets.
     """
 
