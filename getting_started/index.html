@@ -297,6 +297,20 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#mercatigas" class="md-nav__link">
+    MercatiGas
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mercatiambientali" class="md-nav__link">
+    MercatiAmbientali
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -465,6 +479,20 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#mercatigas" class="md-nav__link">
+    MercatiGas
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mercatiambientali" class="md-nav__link">
+    MercatiAmbientali
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -490,19 +518,19 @@
 <p>Since the library is asynchronous, it is required to use it within an <code>async</code> function. For example:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span> <span class="nn">asyncio</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span> <span class="nn">mercati_energetici</span> <span class="kn">import</span> <span class="n">MGP</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="k">async</span> <span class="k">with</span> <span class="n">MGP</span><span class="p">()</span> <span class="k">as</span> <span class="n">mgp</span><span class="p">:</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        <span class="c1"># Get average PUN price</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;PUN avg: &quot;</span><span class="p">,</span> <span class="k">await</span> <span class="n">mgp</span><span class="o">.</span><span class="n">daily_pun</span><span class="p">(</span><span class="n">date</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">28</span><span class="p">)))</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="k">async</span> <span class="k">with</span> <span class="n">MGP</span><span class="p">()</span> <span class="k">as</span> <span class="n">mgp</span><span class="p">:</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        <span class="c1"># Get average PUN price</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;PUN avg: &quot;</span><span class="p">,</span> <span class="k">await</span> <span class="n">mgp</span><span class="o">.</span><span class="n">daily_pun</span><span class="p">(</span><span class="n">date</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">28</span><span class="p">)))</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
 </code></pre></div>
 <p>The dates are accepted as <code>datetime.date</code> objects or a <code>str</code> in the format <code>YYYYMMDD</code> like <code>20230328</code> for 28 March 2023. The default date is today.</p>
 <h2 id="mgp">MGP</h2>
+<p><a href="https://www.mercatoelettrico.org/en/Mercati/MercatoElettrico/MPE.aspx">What is the day-ahead market? (Mercato del Giorno Prima, MGP)</a></p>
 <p>This class can be used to retrieve the average price of electricity in Italy (PUN) for a specific date. It also allows to retrieve hourly prices, volumes and liquidity of the day-ahead market. </p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">async</span> <span class="k">with</span> <span class="n">MGP</span><span class="p">()</span> <span class="k">as</span> <span class="n">mgp</span><span class="p">:</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
@@ -545,13 +573,13 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">await</span> <span class="n">mgp</span><span class="o">.</span><span class="n">get_prices</span><span class="p">(</span><span class="n">date</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span> <span class="n">zone</span><span class="o">=</span><span class="s2">&quot;SUD&quot;</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="mercatielettrici">MercatiElettrici</h2>
-<p>This class wraps the API for the day-ahead electricity market. It allows to retrieve hourly prices, volumes and liquidity of the day-ahead market exactly as served by GME.</p>
+<p>This class wraps the API for the day-ahead electricity market. It allows to retrieve hourly prices, volumes and liquidity of the day-ahead market exactly as served by GME. For an explaination of the markets see <a href="https://www.mercatoelettrico.org/En/Mercati/MercatoElettrico/IlMercatoElettrico.aspx">the GME website</a>.</p>
 <p>First of all you should accept the terms of use of GME API:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">async</span> <span class="k">with</span> <span class="n">MercatiElettrici</span><span class="p">()</span> <span class="k">as</span> <span class="n">mercati_elettrici</span><span class="p">:</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="k">await</span> <span class="n">mercati_elettrici</span><span class="o">.</span><span class="n">get_general_conditions</span><span class="p">())</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="k">await</span> <span class="n">mercati_elettrici</span><span class="o">.</span><span class="n">get_disclaimer</span><span class="p">())</span>
 </code></pre></div>
-<p>After that, you can retrieve the hourly available markets with:</p>
+<p>After that, you can retrieve the available markets with:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">await</span> <span class="n">mercati_elettrici</span><span class="o">.</span><span class="n">get_markets</span><span class="p">()</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># Returns:</span>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="p">[</span>
@@ -586,6 +614,116 @@
 <a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>    <span class="p">{</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="mi">20230404</span><span class="p">,</span> <span class="s2">&quot;ora&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;mercato&quot;</span><span class="p">:</span> <span class="s2">&quot;MI-A2&quot;</span><span class="p">,</span> <span class="s2">&quot;zona&quot;</span><span class="p">:</span> <span class="s2">&quot;CSUD&quot;</span><span class="p">,</span> <span class="s2">&quot;prezzo&quot;</span><span class="p">:</span> <span class="mf">112.0</span><span class="p">},</span>
 <a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>    <span class="o">...</span>
 <a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="p">]</span>
+</code></pre></div>
+<h2 id="mercatigas">MercatiGas</h2>
+<p>This class wraps the API for the gas markets. The gas markets are operated with a continuous trading mode and an auction mode, both a few days ahead and in the intraday market. Moreover, there is a market for the stored gas. See <a href="https://www.mercatoelettrico.org/en/Mercati/MGAS/MGas.aspx">the GME website</a> for more details. The API allows to retrieve the hourly prices and volumes of the markets exactly as served by GME.</p>
+<p>First of all you should accept the terms of use of GME API:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">async</span> <span class="k">with</span> <span class="n">MercatiGas</span><span class="p">()</span> <span class="k">as</span> <span class="n">mercati_gas</span><span class="p">:</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="k">await</span> <span class="n">mercati_gas</span><span class="o">.</span><span class="n">get_general_conditions</span><span class="p">())</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="k">await</span> <span class="n">mercati_gas</span><span class="o">.</span><span class="n">get_disclaimer</span><span class="p">())</span>
+</code></pre></div>
+<p>After that, you can retrieve the available markets with:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">await</span> <span class="n">mercati_gas</span><span class="o">.</span><span class="n">get_markets</span><span class="p">()</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="c1"># Returns:</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="p">[</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>    <span class="p">{</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="mi">20230405</span><span class="p">,</span> <span class="s2">&quot;prodotto&quot;</span><span class="p">:</span> <span class="s2">&quot;MGP-2023-04-06&quot;</span><span class="p">,</span> <span class="s2">&quot;volumi&quot;</span><span class="p">:</span> <span class="mf">245208.0</span><span class="p">,</span> <span class="s2">&quot;tipo&quot;</span><span class="p">:</span> <span class="s2">&quot;C&quot;</span><span class="p">},</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>    <span class="p">{</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="mi">20230405</span><span class="p">,</span> <span class="s2">&quot;prodotto&quot;</span><span class="p">:</span> <span class="s2">&quot;MGP-2023-04-07&quot;</span><span class="p">,</span> <span class="s2">&quot;volumi&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;tipo&quot;</span><span class="p">:</span> <span class="s2">&quot;C&quot;</span><span class="p">},</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>    <span class="p">{</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="mi">20230405</span><span class="p">,</span> <span class="s2">&quot;prodotto&quot;</span><span class="p">:</span> <span class="s2">&quot;MGP-2023-04-08&quot;</span><span class="p">,</span> <span class="s2">&quot;volumi&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;tipo&quot;</span><span class="p">:</span> <span class="s2">&quot;C&quot;</span><span class="p">},</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>    <span class="p">{</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="mi">20230405</span><span class="p">,</span> <span class="s2">&quot;prodotto&quot;</span><span class="p">:</span> <span class="s2">&quot;MI-2023-04-05&quot;</span><span class="p">,</span> <span class="s2">&quot;volumi&quot;</span><span class="p">:</span> <span class="mf">224688.0</span><span class="p">,</span> <span class="s2">&quot;tipo&quot;</span><span class="p">:</span> <span class="s2">&quot;C&quot;</span><span class="p">},</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>    <span class="p">{</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="mi">20230405</span><span class="p">,</span> <span class="s2">&quot;prodotto&quot;</span><span class="p">:</span> <span class="s2">&quot;MGP-2023-04-06&quot;</span><span class="p">,</span> <span class="s2">&quot;volumi&quot;</span><span class="p">:</span> <span class="mf">90480.0</span><span class="p">,</span> <span class="s2">&quot;tipo&quot;</span><span class="p">:</span> <span class="s2">&quot;A&quot;</span><span class="p">},</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>    <span class="p">{</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="mi">20230405</span><span class="p">,</span> <span class="s2">&quot;prodotto&quot;</span><span class="p">:</span> <span class="s2">&quot;MI-2023-04-05&quot;</span><span class="p">,</span> <span class="s2">&quot;volumi&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s2">&quot;tipo&quot;</span><span class="p">:</span> <span class="s2">&quot;A&quot;</span><span class="p">},</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>    <span class="p">{</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="mi">20230405</span><span class="p">,</span> <span class="s2">&quot;prodotto&quot;</span><span class="p">:</span> <span class="s2">&quot;MGS-Edison Stoccaggio&quot;</span><span class="p">,</span> <span class="s2">&quot;volumi&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s2">&quot;tipo&quot;</span><span class="p">:</span> <span class="s2">&quot;A&quot;</span><span class="p">},</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>    <span class="p">{</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="mi">20230405</span><span class="p">,</span> <span class="s2">&quot;prodotto&quot;</span><span class="p">:</span> <span class="s2">&quot;MGS-Stogit&quot;</span><span class="p">,</span> <span class="s2">&quot;volumi&quot;</span><span class="p">:</span> <span class="mf">12036.924</span><span class="p">,</span> <span class="s2">&quot;tipo&quot;</span><span class="p">:</span> <span class="s2">&quot;A&quot;</span><span class="p">},</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="p">]</span>
+</code></pre></div>
+<p>Where <code>tipo</code> is <code>C</code> for continuous trading and <code>A</code> for auction, whereas <code>prodotto</code> starts with <code>MGP</code> for day-ahead markets, <code>MI</code> for the intraday market and <code>MI</code> for the intraday market. As you can notice, on a single day (<code>20230405</code>) there are many open markets for different days.</p>
+<p>Next, choose a product from the continuous trading ones (es: <code>MGP-2023-04-06</code>) and retrieve the trading results:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">await</span> <span class="n">mercati_gas</span><span class="o">.</span><span class="n">get_continuous_trading_results</span><span class="p">(</span><span class="s2">&quot;MGP-2023-04-06&quot;</span><span class="p">,</span> <span class="n">date</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="c1"># Returns:</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="p">[{</span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="mi">20230405</span><span class="p">,</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>  <span class="s1">&#39;mercato&#39;</span><span class="p">:</span> <span class="s1">&#39;MGP&#39;</span><span class="p">,</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>  <span class="s1">&#39;prezzoControllo&#39;</span><span class="p">:</span> <span class="mf">51.995</span><span class="p">,</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>  <span class="s1">&#39;prezzoMassimo&#39;</span><span class="p">:</span> <span class="mf">52.5</span><span class="p">,</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>  <span class="s1">&#39;prezzoMedio&#39;</span><span class="p">:</span> <span class="mf">51.35733</span><span class="p">,</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>  <span class="s1">&#39;prezzoMinimo&#39;</span><span class="p">:</span> <span class="mf">50.2</span><span class="p">,</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>  <span class="s1">&#39;primoPrezzo&#39;</span><span class="p">:</span> <span class="mf">50.5</span><span class="p">,</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>  <span class="s1">&#39;prodotto&#39;</span><span class="p">:</span> <span class="s1">&#39;MGP-2023-04-06&#39;</span><span class="p">,</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>  <span class="s1">&#39;ultimoPrezzo&#39;</span><span class="p">:</span> <span class="mf">51.151</span><span class="p">,</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>  <span class="s1">&#39;volumiMw&#39;</span><span class="p">:</span> <span class="mf">10217.0</span><span class="p">,</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>  <span class="s1">&#39;volumiMwh&#39;</span><span class="p">:</span> <span class="mf">245208.0</span><span class="p">}]</span>
+</code></pre></div>
+<p>or a product from the auction ones (es: <code>MI-2023-04-05</code>) and retrieve the auction results:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">await</span> <span class="n">mercati_gas</span><span class="o">.</span><span class="n">get_auction_trading_results</span><span class="p">(</span><span class="s2">&quot;MI-2023-04-05&quot;</span><span class="p">,</span> <span class="n">date</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="c1"># Returns:</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="p">[{</span><span class="s1">&#39;acquistiTso&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>  <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="mi">20230405</span><span class="p">,</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>  <span class="s1">&#39;mercato&#39;</span><span class="p">:</span> <span class="s1">&#39;MI&#39;</span><span class="p">,</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>  <span class="s1">&#39;prezzo&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>  <span class="s1">&#39;prodotto&#39;</span><span class="p">:</span> <span class="s1">&#39;MI-2023-04-05&#39;</span><span class="p">,</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>  <span class="s1">&#39;venditeTso&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>  <span class="s1">&#39;volumiMw&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>  <span class="s1">&#39;volumiMwh&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">}]</span>
+</code></pre></div>
+<p>or a stored gas product (es: <code>MGS-Stogit</code>) and retrieve the stored gas results:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">await</span> <span class="n">mercati_gas</span><span class="o">.</span><span class="n">get_stored_gas_trading_results</span><span class="p">(</span><span class="s2">&quot;MGS-Stogit&quot;</span><span class="p">,</span> <span class="n">date</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="c1"># Returns:</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="p">[{</span><span class="s1">&#39;acquistiSrg&#39;</span><span class="p">:</span> <span class="mf">2036.924</span><span class="p">,</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>  <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="mi">20230405</span><span class="p">,</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>  <span class="s1">&#39;dataFlusso&#39;</span><span class="p">:</span> <span class="mi">20230405</span><span class="p">,</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>  <span class="s1">&#39;impresaStoccaggio&#39;</span><span class="p">:</span> <span class="s1">&#39;Stogit&#39;</span><span class="p">,</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>  <span class="s1">&#39;prezzo&#39;</span><span class="p">:</span> <span class="mf">49.95</span><span class="p">,</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>  <span class="s1">&#39;tipologia&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>  <span class="s1">&#39;venditeSrg&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>  <span class="s1">&#39;volumi&#39;</span><span class="p">:</span> <span class="mf">12036.924</span><span class="p">}]</span>
+</code></pre></div>
+<h2 id="mercatiambientali">MercatiAmbientali</h2>
+<p>This class wraps the API for the environmental markets. See <a href="https://www.mercatoelettrico.org/En/Mercati/TEE/CosaSonoTee.aspx">the GME website</a> for an explaination of the environmental markets. The API allows to retrieve the hourly prices and volumes of the markets exactly as served by GME.</p>
+<p>First of all you should accept the terms of use of GME API:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">async</span> <span class="k">with</span> <span class="n">MercatiAmbientali</span><span class="p">()</span> <span class="k">as</span> <span class="n">mercati_ambientali</span><span class="p">:</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="k">await</span> <span class="n">mercati_ambientali</span><span class="o">.</span><span class="n">get_general_conditions</span><span class="p">())</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="k">await</span> <span class="n">mercati_ambientali</span><span class="o">.</span><span class="n">get_disclaimer</span><span class="p">())</span>
+</code></pre></div>
+<p>After that, you can retrieve the available markets with:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">await</span> <span class="n">mercati_ambientali</span><span class="o">.</span><span class="n">get_markets</span><span class="p">()</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="c1"># Returns:</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="p">[{</span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="mi">20230323</span><span class="p">,</span> <span class="s1">&#39;mercato&#39;</span><span class="p">:</span> <span class="s1">&#39;GO&#39;</span><span class="p">,</span> <span class="s1">&#39;volumi&#39;</span><span class="p">:</span> <span class="mf">136917.0</span><span class="p">},</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a> <span class="p">{</span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="mi">20230328</span><span class="p">,</span> <span class="s1">&#39;mercato&#39;</span><span class="p">:</span> <span class="s1">&#39;TEE&#39;</span><span class="p">,</span> <span class="s1">&#39;volumi&#39;</span><span class="p">:</span> <span class="mf">29209.0</span><span class="p">}]</span>
+</code></pre></div>
+<p>Next, choose a market (es: <code>GO</code>) and retrieve the trading results:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">await</span> <span class="n">mercati_ambientali</span><span class="o">.</span><span class="n">get_trading_results</span><span class="p">(</span><span class="s2">&quot;GO&quot;</span><span class="p">,</span> <span class="n">date</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">23</span><span class="p">))</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="c1"># Returns:</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="p">[{</span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="mi">20230323</span><span class="p">,</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>  <span class="s1">&#39;mercato&#39;</span><span class="p">:</span> <span class="s1">&#39;GO&#39;</span><span class="p">,</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>  <span class="s1">&#39;periodo&#39;</span><span class="p">:</span> <span class="s1">&#39;Altri Mesi 2022&#39;</span><span class="p">,</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>  <span class="s1">&#39;prezzoMassimo&#39;</span><span class="p">:</span> <span class="mf">9.0</span><span class="p">,</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>  <span class="s1">&#39;prezzoMinimo&#39;</span><span class="p">:</span> <span class="mf">6.1</span><span class="p">,</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>  <span class="s1">&#39;prezzoRiferimento&#39;</span><span class="p">:</span> <span class="mf">6.833425</span><span class="p">,</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>  <span class="s1">&#39;tipologia&#39;</span><span class="p">:</span> <span class="s1">&#39;Altro&#39;</span><span class="p">,</span>
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>  <span class="s1">&#39;volumi&#39;</span><span class="p">:</span> <span class="mf">3115.0</span><span class="p">},</span>
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a> <span class="p">{</span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="mi">20230323</span><span class="p">,</span>
+<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>  <span class="s1">&#39;mercato&#39;</span><span class="p">:</span> <span class="s1">&#39;GO&#39;</span><span class="p">,</span>
+<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>  <span class="s1">&#39;periodo&#39;</span><span class="p">:</span> <span class="s1">&#39;Altri Mesi 2022&#39;</span><span class="p">,</span>
+<a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a>  <span class="s1">&#39;prezzoMassimo&#39;</span><span class="p">:</span> <span class="mf">8.0</span><span class="p">,</span>
+<a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a>  <span class="s1">&#39;prezzoMinimo&#39;</span><span class="p">:</span> <span class="mf">7.25</span><span class="p">,</span>
+<a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a>  <span class="s1">&#39;prezzoRiferimento&#39;</span><span class="p">:</span> <span class="mf">7.611801</span><span class="p">,</span>
+<a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a>  <span class="s1">&#39;tipologia&#39;</span><span class="p">:</span> <span class="s1">&#39;Eolico&#39;</span><span class="p">,</span>
+<a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a>  <span class="s1">&#39;volumi&#39;</span><span class="p">:</span> <span class="mf">5567.0</span><span class="p">},</span>
+<a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a> <span class="p">{</span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="mi">20230323</span><span class="p">,</span>
+<a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a>  <span class="s1">&#39;mercato&#39;</span><span class="p">:</span> <span class="s1">&#39;GO&#39;</span><span class="p">,</span>
+<a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a>  <span class="s1">&#39;periodo&#39;</span><span class="p">:</span> <span class="s1">&#39;Altri Mesi 2022&#39;</span><span class="p">,</span>
+<a id="__codelineno-16-22" name="__codelineno-16-22" href="#__codelineno-16-22"></a>  <span class="s1">&#39;prezzoMassimo&#39;</span><span class="p">:</span> <span class="mf">8.0</span><span class="p">,</span>
+<a id="__codelineno-16-23" name="__codelineno-16-23" href="#__codelineno-16-23"></a>  <span class="s1">&#39;prezzoMinimo&#39;</span><span class="p">:</span> <span class="mf">7.0</span><span class="p">,</span>
+<a id="__codelineno-16-24" name="__codelineno-16-24" href="#__codelineno-16-24"></a>  <span class="s1">&#39;prezzoRiferimento&#39;</span><span class="p">:</span> <span class="mf">7.583506</span><span class="p">,</span>
+<a id="__codelineno-16-25" name="__codelineno-16-25" href="#__codelineno-16-25"></a>  <span class="s1">&#39;tipologia&#39;</span><span class="p">:</span> <span class="s1">&#39;Idroelettrico&#39;</span><span class="p">,</span>
+<a id="__codelineno-16-26" name="__codelineno-16-26" href="#__codelineno-16-26"></a>  <span class="s1">&#39;volumi&#39;</span><span class="p">:</span> <span class="mf">112000.0</span><span class="p">},</span>
+<a id="__codelineno-16-27" name="__codelineno-16-27" href="#__codelineno-16-27"></a> <span class="p">{</span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="mi">20230323</span><span class="p">,</span>
+<a id="__codelineno-16-28" name="__codelineno-16-28" href="#__codelineno-16-28"></a>  <span class="s1">&#39;mercato&#39;</span><span class="p">:</span> <span class="s1">&#39;GO&#39;</span><span class="p">,</span>
+<a id="__codelineno-16-29" name="__codelineno-16-29" href="#__codelineno-16-29"></a>  <span class="s1">&#39;periodo&#39;</span><span class="p">:</span> <span class="s1">&#39;Altri Mesi 2022&#39;</span><span class="p">,</span>
+<a id="__codelineno-16-30" name="__codelineno-16-30" href="#__codelineno-16-30"></a>  <span class="s1">&#39;prezzoMassimo&#39;</span><span class="p">:</span> <span class="mf">7.95</span><span class="p">,</span>
+<a id="__codelineno-16-31" name="__codelineno-16-31" href="#__codelineno-16-31"></a>  <span class="s1">&#39;prezzoMinimo&#39;</span><span class="p">:</span> <span class="mf">6.0</span><span class="p">,</span>
+<a id="__codelineno-16-32" name="__codelineno-16-32" href="#__codelineno-16-32"></a>  <span class="s1">&#39;prezzoRiferimento&#39;</span><span class="p">:</span> <span class="mf">7.400446</span><span class="p">,</span>
+<a id="__codelineno-16-33" name="__codelineno-16-33" href="#__codelineno-16-33"></a>  <span class="s1">&#39;tipologia&#39;</span><span class="p">:</span> <span class="s1">&#39;Solare&#39;</span><span class="p">,</span>
+<a id="__codelineno-16-34" name="__codelineno-16-34" href="#__codelineno-16-34"></a>  <span class="s1">&#39;volumi&#39;</span><span class="p">:</span> <span class="mf">16235.0</span><span class="p">}]</span>
 </code></pre></div>
 
 
